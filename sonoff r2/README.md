@@ -4,5 +4,5 @@
 
 El firmware se ha creado usando la [configuración oficial](https://github.com/esphome/firmware/blob/main/esphome-web/esp8266.yaml) de EspHome.
 
-Su sha256 es `8f3e917c374b630312574b9fadfc6a6fd8de20550143653450b780819ee7fd3d`
+Su sha256 es `09ae10edc821b6d94836f86e6fed8a70cdb6b89340a668f3f29d56689d1cf1af`
 
