@@ -1,8 +1,16 @@
-# Firmware adoptable
+# Comandos para instalar EspHome en un Sonoff en modo DIY
 
-[Firmware](firmware.bin) por defecto para «adoptar» dispositivos ESP8266 (como el Sonoff Mini) e instalar un firmware nuevo por OTA.
 
-El firmware se ha creado usando la [configuración oficial](https://github.com/esphome/firmware/blob/main/esphome-web/esp8266.yaml) de EspHome.
+```bash
+nmap -p 8081 --open 192.168.1.0/24
 
-Su sha256 es `09ae10edc821b6d94836f86e6fed8a70cdb6b89340a668f3f29d56689d1cf1af`
+curl -XPOST --header "Content-Type: application/json" --data-raw "{\"data\": {}}" "http://${SONOFF_IP}:8081/zeroconf/info"
 
+curl -XPOST --header "Content-Type: application/json" --data-raw "{\"data\": {}}" "http://${SONOFF_IP}:8081/zeroconf/ota_unlock"
+
+SONOFF_HASH=`sha256sum sonoff-mini.bin | cut -d ' ' -f 1`
+
+
+curl -XPOST --header "Content-Type: application/json" --data-raw "{\"data\": {\"downloadUrl\":\"${SONOFF_URL}\", \"sha256sum\":\"${SONOFF_HASH}\"}}" "http://${SONOFF_IP}:8081/zeroconf/ota_flash"
+
+```
